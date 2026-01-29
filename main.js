@@ -48,12 +48,14 @@ app.whenReady().then(() => {
   createWindow();
   createTray();
   
-  // Set app to launch at startup
-  app.setLoginItemSettings({
-    openAtLogin: true,
-    openAsHidden: true,
-    path: app.getPath('exe')
-  });
+  // Set app to launch at startup only in production (not in dev mode)
+  if (app.isPackaged) {
+    app.setLoginItemSettings({
+      openAtLogin: true,
+      openAsHidden: false,
+      path: app.getPath('exe')
+    });
+  }
 });
 
 function createTray() {
