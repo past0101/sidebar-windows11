@@ -1,0 +1,42 @@
+{
+  "name": "windows-sidebar",
+  "version": "1.0.0",
+  "description": "Modern transparent sidebar for Windows 11 with drag-and-drop shortcuts",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "keywords": [
+    "sidebar",
+    "windows11",
+    "shortcuts",
+    "launcher"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^27.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.sidebar.windows11",
+    "productName": "Windows 11 Sidebar",
+    "win": {
+      "target": "nsis",
+      "icon": "icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "runAfterFinish": true,
+      "installerIcon": "icon.ico",
+      "uninstallerIcon": "icon.ico"
+    }
+  },
+  "dependencies": {
+    "windows-shortcuts": "^0.1.6"
+  }
+}

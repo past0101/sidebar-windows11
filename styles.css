@@ -1,0 +1,194 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: visible;
+    background: transparent;
+    -webkit-app-region: no-drag;
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar-container {
+    width: 60px;
+    min-height: 60px;
+    background: rgba(20, 20, 30, 0.4);
+    backdrop-filter: blur(60px) saturate(200%);
+    -webkit-backdrop-filter: blur(60px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+    position: absolute;
+    right: 0;
+    overflow: visible !important;
+    padding: 6px;
+}
+
+.sidebar-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(99, 102, 241, 0.15) 0%, 
+        rgba(168, 85, 247, 0.15) 50%, 
+        rgba(236, 72, 153, 0.15) 100%);
+    border-radius: 20px;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.sidebar-container.drag-over {
+    background: rgba(99, 102, 241, 0.3);
+    border-color: rgba(129, 140, 248, 0.6);
+    box-shadow: 0 8px 32px rgba(99, 102, 241, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+
+.shortcuts-container {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: visible;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.shortcuts-container::-webkit-scrollbar {
+    display: none;
+}
+
+.shortcuts-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.tooltip {
+    position: absolute;
+    background: rgba(20, 20, 20, 0.98);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(129, 140, 248, 0.5);
+    border-radius: 12px;
+    padding: 14px 18px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    width: 300px;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    z-index: 999999;
+    left: 0;
+    transform: translateX(-310px);
+}
+
+.tooltip.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.tooltip-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 4px;
+    word-wrap: break-word;
+}
+
+.tooltip-path {
+    display: none;
+}
+
+.shortcut-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    background: rgba(40, 40, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: visible;
+    z-index: 10;
+    width: 48px;
+    height: 48px;
+}
+
+
+.shortcut-item:hover {
+    background: rgba(60, 60, 80, 1);
+    transform: scale(1.08);
+    border-color: rgba(129, 140, 248, 0.8);
+    box-shadow: 0 4px 16px rgba(129, 140, 248, 0.4);
+}
+
+.shortcut-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.shortcut-icon svg {
+    width: 24px;
+    height: 24px;
+    color: #818cf8;
+}
+
+.shortcut-icon img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+.shortcut-delete {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: rgba(239, 68, 68, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+}
+
+.shortcut-item:hover .shortcut-delete {
+    opacity: 1;
+}
+
+.shortcut-delete svg {
+    width: 10px;
+    height: 10px;
+    color: #ffffff;
+}
+
+.shortcut-delete:hover {
+    background: rgba(239, 68, 68, 0.8);
+    transform: scale(1.1);
+}
+
+
+
