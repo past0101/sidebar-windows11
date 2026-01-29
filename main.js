@@ -24,6 +24,7 @@ function createWindow() {
     resizable: false,
     movable: false,
     hasShadow: false,
+    icon: path.join(__dirname, 'icon.ico'),
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -56,8 +57,10 @@ app.whenReady().then(() => {
 });
 
 function createTray() {
-  // Use default Electron icon for tray (or create a nativeImage)
-  const icon = nativeImage.createEmpty();
+  // Load the custom icon
+  const iconPath = path.join(__dirname, 'icon.ico');
+  const icon = nativeImage.createFromPath(iconPath);
+  
   tray = new Tray(icon);
   
   const contextMenu = Menu.buildFromTemplate([

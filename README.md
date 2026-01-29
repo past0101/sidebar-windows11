@@ -72,50 +72,87 @@ npm start
 
 ## Build σε Εκτελέσιμο (.exe)
 
-### Προετοιμασία
+### Μέθοδος 1: Portable Build (Recommended)
 
-1. Βεβαιώσου ότι έχεις ένα `icon.ico` αρχείο στο root folder
-   - Μέγεθος: 256x256 pixels recommended
-   - Format: .ico
+Αυτή είναι η απλούστερη μέθοδος που δουλεύει πάντα:
 
-2. Εγκατάσταση electron-builder (αν δεν έχει γίνει ήδη)
 ```bash
-npm install --save-dev electron-builder
+npm run package
 ```
 
-### Build Process
+Το portable app θα δημιουργηθεί στο:
+```
+dist/Windows Sidebar By WebAlly-win32-x64/
+```
 
-Εκτέλεσε την εντολή build:
+Μέσα θα βρεις το `Windows Sidebar By WebAlly.exe` που μπορείς να τρέξεις απευθείας.
+
+**Πλεονεκτήματα:**
+- Δεν χρειάζεται εγκατάσταση
+- Δεν χρειάζεται administrator privileges
+- Portable - μπορείς να το μετακινήσεις όπου θέλεις
+- Auto-startup λειτουργεί αυτόματα
+
+### Μέθοδος 2: Installer Build (Advanced)
+
+Αν θέλεις να δημιουργήσεις installer:
+
+1. **Προετοιμασία**
+   - Χρειάζεσαι administrator privileges
+   - Προαιρετικά: Δημιούργησε ένα `icon.ico` (256x256 pixels)
+
+2. **Build Command**
 ```bash
 npm run build
 ```
 
-Το installer θα δημιουργηθεί στο folder `dist/`:
+**Σημείωση:** Αν αποτύχει λόγω code signing errors, χρησιμοποίησε την Μέθοδο 1.
+
+### Πώς να κάνεις Build εσύ
+
+1. **Clone το repository**
+```bash
+git clone https://github.com/past0101/sidebar-windows11.git
+cd sidebar-windows11
 ```
-dist/
-  └── Windows 11 Sidebar Setup.exe
+
+2. **Εγκατάσταση dependencies**
+```bash
+npm install
 ```
 
-### Τι περιλαμβάνει το Installer
+3. **Τρέξε το app για testing**
+```bash
+npm start
+```
 
-- Αυτόματη εγκατάσταση στο Program Files
-- Desktop shortcut
-- Start Menu shortcut
-- Auto-startup με τα Windows
-- Uninstaller
-- System tray integration
+4. **Build το portable exe**
+```bash
+npm run package
+```
 
-### Εγκατάσταση
+5. **Το exe βρίσκεται στο:**
+```
+dist/Windows Sidebar By WebAlly-win32-x64/Windows Sidebar By WebAlly.exe
+```
 
-1. Εκτέλεσε το `Windows 11 Sidebar Setup.exe`
-2. Επίλεξε το installation directory (προαιρετικό)
-3. Το app θα ξεκινήσει αυτόματα μετά την εγκατάσταση
+### Χρήση του Portable App
+
+1. Πήγαινε στο `dist/Windows Sidebar By WebAlly-win32-x64/`
+2. Εκτέλεσε το `Windows Sidebar By WebAlly.exe`
+3. Το app θα ξεκινήσει και θα ρυθμιστεί για auto-startup
 4. Θα εμφανιστεί στο system tray (hidden icons)
 
-### Απεγκατάσταση
+### Troubleshooting
 
-- Μέσω Windows Settings > Apps > Installed Apps
-- Ή μέσω Control Panel > Programs and Features
+**Πρόβλημα: Icons δεν φορτώνουν**
+- Τα Windows native icons φορτώνουν από .lnk shortcuts
+- Σύρε shortcuts από το Start Menu ή Desktop
+- Τα .exe files θα δείξουν το native icon τους
+
+**Πρόβλημα: Build αποτυγχάνει**
+- Χρησιμοποίησε `npm run package` αντί για `npm run build`
+- Βεβαιώσου ότι έχεις Node.js v16 ή νεότερο
 
 ## Τεχνολογίες
 

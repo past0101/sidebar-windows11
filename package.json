@@ -29,10 +29,14 @@
       "target": [
         "portable",
         "zip"
-      ]
+      ],
+      "icon": "icon.ico"
     }
   },
   "dependencies": {
+    "canvas": "^3.2.1",
+    "png-to-ico": "^3.0.1",
+    "sharp": "^0.34.5",
     "windows-shortcuts": "^0.1.6"
   }
 }
