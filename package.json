@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder"
+    "build": "set CSC_IDENTITY_AUTO_DISCOVERY=false && electron-builder",
+    "package": "electron-packager . \"Windows Sidebar By WebAlly\" --platform=win32 --arch=x64 --out=dist --overwrite"
   },
   "keywords": [
     "sidebar",
@@ -18,20 +19,17 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "^27.0.0",
-    "electron-builder": "^24.13.3"
+    "electron-builder": "^24.13.3",
+    "electron-packager": "^17.1.2"
   },
   "build": {
     "appId": "com.webally.sidebar.windows11",
     "productName": "Windows Sidebar By WebAlly",
     "win": {
-      "target": "nsis"
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true,
-      "createDesktopShortcut": true,
-      "createStartMenuShortcut": true,
-      "runAfterFinish": true
+      "target": [
+        "portable",
+        "zip"
+      ]
     }
   },
   "dependencies": {
