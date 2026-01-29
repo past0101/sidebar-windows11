@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Icon</title>
+</head>
+<body>
+    <canvas id="canvas" width="256" height="256"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Background - gradient
+        const gradient = ctx.createLinearGradient(0, 0, 256, 256);
+        gradient.addColorStop(0, '#6366f1');
+        gradient.addColorStop(0.5, '#a855f7');
+        gradient.addColorStop(1, '#ec4899');
+        
+        // Draw rounded rectangle background
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.roundRect(20, 20, 216, 216, 40);
+        ctx.fill();
+        
+        // Draw sidebar representation (3 squares)
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        
+        // Top square
+        ctx.beginPath();
+        ctx.roundRect(90, 60, 76, 76, 12);
+        ctx.fill();
+        
+        // Middle square
+        ctx.beginPath();
+        ctx.roundRect(90, 140, 76, 76, 12);
+        ctx.fill();
+        
+        // Save as PNG
+        const link = document.createElement('a');
+        link.download = 'icon.png';
+        link.href = canvas.toDataURL();
+        link.click();
+    </script>
+</body>
+</html>
