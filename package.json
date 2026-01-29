@@ -35,7 +35,9 @@
   },
   "dependencies": {
     "canvas": "^3.2.1",
+    "icon-extractor": "^1.0.3",
     "png-to-ico": "^3.0.1",
+    "regedit": "^5.1.4",
     "sharp": "^0.34.5",
     "windows-shortcuts": "^0.1.6"
   }
