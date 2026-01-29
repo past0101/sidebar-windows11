@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Windows Sidebar Icon</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: #1a1a2e;
+            color: white;
+        }
+        canvas {
+            border: 2px solid #6366f1;
+            margin: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        button:hover {
+            background: #4f46e5;
+        }
+    </style>
+</head>
+<body>
+    <h1>Windows Sidebar Icon Generator</h1>
+    <canvas id="canvas" width="512" height="512"></canvas>
+    <div>
+        <button onclick="downloadPNG()">Download PNG (512x512)</button>
+        <button onclick="downloadSmall()">Download PNG (256x256)</button>
+    </div>
+    <p>After downloading, use an online converter to create .ico file</p>
+    <p>Recommended: <a href="https://convertio.co/png-ico/" target="_blank" style="color: #818cf8;">convertio.co/png-ico/</a></p>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        function drawIcon() {
+            // Clear canvas
+            ctx.clearRect(0, 0, 512, 512);
+            
+            // Background - gradient circle
+            const gradient = ctx.createLinearGradient(0, 0, 512, 512);
+            gradient.addColorStop(0, '#6366f1');
+            gradient.addColorStop(0.5, '#a855f7');
+            gradient.addColorStop(1, '#ec4899');
+            
+            // Draw rounded square background
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.roundRect(40, 40, 432, 432, 80);
+            ctx.fill();
+            
+            // Draw sidebar representation - 4 rounded rectangles
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+            
+            // Top icon
+            ctx.beginPath();
+            ctx.roundRect(180, 100, 152, 152, 24);
+            ctx.fill();
+            
+            // Second icon
+            ctx.beginPath();
+            ctx.roundRect(180, 180, 152, 72, 16);
+            ctx.fill();
+            
+            // Third icon
+            ctx.beginPath();
+            ctx.roundRect(180, 260, 152, 72, 16);
+            ctx.fill();
+            
+            // Fourth icon
+            ctx.beginPath();
+            ctx.roundRect(180, 340, 152, 72, 16);
+            ctx.fill();
+            
+            // Add subtle inner glow
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.roundRect(44, 44, 424, 424, 76);
+            ctx.stroke();
+        }
+        
+        drawIcon();
+        
+        function downloadPNG() {
+            const link = document.createElement('a');
+            link.download = 'windows-sidebar-icon-512.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        function downloadSmall() {
+            const smallCanvas = document.createElement('canvas');
+            smallCanvas.width = 256;
+            smallCanvas.height = 256;
+            const smallCtx = smallCanvas.getContext('2d');
+            smallCtx.drawImage(canvas, 0, 0, 256, 256);
+            
+            const link = document.createElement('a');
+            link.download = 'windows-sidebar-icon-256.png';
+            link.href = smallCanvas.toDataURL('image/png');
+            link.click();
+        }
+    </script>
+</body>
+</html>

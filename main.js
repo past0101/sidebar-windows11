@@ -56,7 +56,9 @@ app.whenReady().then(() => {
 });
 
 function createTray() {
-  tray = new Tray(path.join(__dirname, 'icon.ico'));
+  // Use default Electron icon for tray (or create a nativeImage)
+  const icon = nativeImage.createEmpty();
+  tray = new Tray(icon);
   
   const contextMenu = Menu.buildFromTemplate([
     {

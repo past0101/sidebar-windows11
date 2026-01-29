@@ -34,7 +34,7 @@
 ## Εγκατάσταση
 
 ### Απαιτήσεις
-- Windows 11
+- Windows 10 ή Windows 11
 - Node.js (v16 ή νεότερο)
 - npm
 
